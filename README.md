@@ -15,6 +15,23 @@ $ npm run start
 
 # generate static project
 $ npm run generate
+
+# add capacitor
+npm install @capacitor/cli @capacitor/core
+npx cap init
+
+# add ios
+npx cap add ios
+
+# ios
+npx cap open ios
+
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
+
+Nuxt Directory
+Asssets - styles, images, fonts
+Components - global components, no need to register, Nuxt does it automatically
+Static - favicon, mapped to the root
+

@@ -1,37 +1,26 @@
 <template>
   <div class="container">
     <div>
-      <Logo />
-      <h1 class="title">
-        mult-game
+      <h1 class="text-muted">
+        MultiGames!
       </h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum corporis magnam facere fugiat nihil, id quia, impedit tempore eligendi totam beatae incidunt eius. Enim consequuntur fuga alias velit? Maxime, est.</p>
     </div>
   </div>
 </template>
 
 <script>
-export default {}
+import { Plugins } from '@capacitor/core'
+
+export default {
+  created () {
+    const { StatusBar } = Plugins
+    StatusBar.hide()
+  }
+}
 </script>
 
-<style>
+<style lang="scss">
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -39,6 +28,10 @@ export default {}
   justify-content: center;
   align-items: center;
   text-align: center;
+  h1 {
+    font-size: 40px;
+  }
+
 }
 
 .title {
