@@ -1,12 +1,16 @@
 {
-  "appId": "com.tinytouchgames.multiplication",
+  "appId": "com.tinytouchgames.tinymath",
   "appName": "mult-game",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 0
+      "launchShowDuration": 2000,
+      "iosSpinnerStyle": "small",
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffffff"
+
     }
   },
   "cordova": {}

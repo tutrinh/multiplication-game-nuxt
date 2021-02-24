@@ -6,7 +6,11 @@
   "webDir": "dist",
   "plugins": {
     "SplashScreen": {
-      "launchShowDuration": 0
+      "launchShowDuration": 2000,
+      "iosSpinnerStyle": "small",
+      "launchAutoHide": true,
+      "backgroundColor": "#ffffffff"
+
     }
   },
   "cordova": {}

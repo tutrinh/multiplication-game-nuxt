@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "app": "npm run build && npm run generate && npm run removedir && npx cap add ios && npx cap open ios",
-    "update" : "npm run build && npm run generate && npx cap copy ios && npx cap open ios",
+    "update": "npm run build && npm run generate && npx cap copy ios && npx cap open ios",
     "removedir": "rm -r ios",
     "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
     "lint": "npm run lint:js"

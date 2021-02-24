@@ -1,0 +1,10 @@
+.progress-ring {
+  &__circle {
+      //stroke-dasharray: 10 20; //10px per dash with 20px between them
+      transition: stroke-dashoffset ease 1s;
+      transition-delay: 2s;
+      transform: rotate(-90deg);
+      transform-origin: 50% 50%;
+      stroke-linecap: round;
+  }
+}

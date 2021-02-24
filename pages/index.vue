@@ -1,66 +1,34 @@
 <template>
-  <div class="container">
-    <div>
-      <h1 class="text-muted">
-        MultiGames!
-      </h1>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum corporis magnam facere fugiat nihil, id quia, impedit tempore eligendi totam beatae incidunt eius. Enim consequuntur fuga alias velit? Maxime, est.</p>
-    </div>
+  <div>
+    <section>
+      <div class="container flex-column">
+        <h1>
+          Evelyn T.
+        </h1>
+        <p class="no-select">Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum corporis magnam facere fugiat nihil, id quia, impedit tempore eligendi totam beatae incidunt eius. Enim consequuntur fuga alias velit? Maxime, est.</p>
+      </div>
+    </section>
+    <section>
+      <Card>
+        <Progress :radius="60" :progress="40" :stroke="14" color="hotpink" under-color="pink" />
+        <div class="no-select">
+          <h4 class="mb-0 font-weight-bold text-muted">Your Score</h4>
+          <p class="small font-weight-bold text-muted">You got <span class="text-success">12</span> out of <span class="text-danger">12</span> correct on the multiplication table of 3s.</p>
+        </div>
+      </Card>
+    </section>
   </div>
 </template>
-
 <script>
-import { Plugins } from '@capacitor/core'
-
+/* eslint-disable */
+import { Print } from '~/utils/print';
 export default {
-  created () {
-    const { StatusBar } = Plugins
-    StatusBar.hide()
+  layout: "main",
+  middleware: 'hidestatusbar',
+  mounted() {
+    Print.printName('Tu');
   }
 }
 </script>
 
-<style lang="scss">
-.container {
-  margin: 0 auto;
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  h1 {
-    font-size: 40px;
-  }
 
-}
-
-.title {
-  font-family:
-    'Quicksand',
-    'Source Sans Pro',
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    Roboto,
-    'Helvetica Neue',
-    Arial,
-    sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
-}
-
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
-}
-
-.links {
-  padding-top: 15px;
-}
-</style>
