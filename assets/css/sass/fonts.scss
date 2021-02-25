@@ -26,6 +26,22 @@
     src: url('@/assets/fonts/Montserrat-Bold.ttf') format('truetype');
 }
 
-body, h1, h2, h3, h4, h5, h6 {
+@font-face {
+  font-family: 'Alata';
+  font-style: normal;
+  src: url('@/assets/fonts/Alata-Regular.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  src: url('@/assets/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+h1, h2, h3, h4, h5, h6 {
     font-family: 'Montserrat', sans-serif;
+}
+
+p {
+  font-family: 'Montserrat', sans-serif;
 }

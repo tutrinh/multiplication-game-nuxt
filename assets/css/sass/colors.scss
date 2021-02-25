@@ -1,0 +1,75 @@
+// Color Palette
+$navy: #283149 !default;
+$coral: #ffc2c2 !default;
+$sunset: #ffb421 !default;
+$light-gray: #f6f4f2 !default;
+$smoke: #ededed !default;
+$black: #23272b !default;
+$gold: #e6b31e !default;
+$red: #f64e4d !default;
+$light-blue: #dbedf3 !default;
+$neon-green: #47ebb4 !default;
+// $neon-green: #47e090 !default;
+$neon-blue: #21b8d3 !default;
+$white: #ffffff !default;
+$neutral: #fcf3ec !default;
+$hotpink: #ff69b4 !default;
+$hotpink-alt: darken($hotpink, 20%) !default;
+$hotblue: #4b50f3 !default;
+$hotblue-alt: darken($hotblue, 20%) !default;
+
+$colors: () !default;
+$colors: map-merge(
+  (
+    "navy": $navy,
+    "coral": $coral,
+    "sunset": $sunset,
+    "light-gray": $light-gray,
+    "black": $black,
+    "gold": $gold,
+    "red": $red,
+    "light-blue": $light-blue,
+    "neon-green": $neon-green,
+    "neon-blue": $neon-blue,
+    "primary": $hotpink,
+    "secondary": $hotblue,
+    "accent": $gold,
+    "white": $white,
+    "neutral": $neutral,
+    "hotpink": $hotpink,
+    "hotpink-alt": $hotpink-alt,
+    "hotblue": $hotblue,
+    "hotblue-alt": $hotblue-alt,
+  ),
+  $colors
+);
+
+@mixin color-bg {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      background-color: $hex !important;
+    }
+  }
+} // @mixin bg-colors
+
+@mixin color {
+  @each $name, $hex in $colors {
+    &-#{$name} {
+      color: $hex !important;
+    }
+  }
+} // @mixin colors
+
+.color-bg {
+  // This creates .color-bg-name classes for everything in the $colors map. example: .color-bg-red
+  @include color-bg;
+} // .color-bg
+
+.color {
+  // This creates .color-name classes for everything in the $colors map.  example: .color-red
+  @include color;
+} // .color
+
+.color-bg-muted {
+  background-color: rgba($color: #fff, $alpha: 0.05);
+}

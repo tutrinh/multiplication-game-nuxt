@@ -1,0 +1,13 @@
+.btn {
+  font-weight: 600;
+  padding: 1rem;
+
+  &:active {
+    background-color: white;
+  }
+
+  &-round {
+    border-radius: 40px;
+  }
+}
+

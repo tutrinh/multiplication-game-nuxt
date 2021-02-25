@@ -33,7 +33,9 @@
       />
     </svg>
     <div class="position-absolute d-flex justify-content-center align-items-center" :style="'top:0; width:'+ radius * 2 +'px;height:'+ radius * 2 + 'px'">
-      <h3>{{ progress }}<span class="small font-weight-bold"><sup class="">%</sup></span></h3>
+      <h3 class="mb-0 heading-tight font-weight-semibold no-select">
+        {{ progress }}
+      </h3>
     </div>
   </div>
 </template>
@@ -79,10 +81,9 @@ export default {
     }
   },
   mounted () {
-    var that = this;
+    var vm = this;
     setTimeout( function () {
-      console.log(this);
-       that.prog = that.progress
+       vm.prog = vm.progress
     }, 1000)
   }
 }
