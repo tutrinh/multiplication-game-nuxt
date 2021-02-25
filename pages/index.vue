@@ -36,7 +36,8 @@
 /* eslint-disable */
 import { Print } from '~/utils/print';
 import { Plugins } from '@capacitor/core';
-const { Haptics } = Plugins;
+const { Storage, Haptics, NativeAudio } = Plugins;
+
 
 export default {
   layout: "main",
@@ -61,14 +62,25 @@ export default {
       
     });
 
+    NativeAudio.preloadSimple({
+      assetPath: "public/assets/click1.mp3",
+      assetId: "chime_audio"
+    })
+
+    // Set level at 3
+    this.setLevel('6')
+
   },
   methods: {
     wrong: function(e) {
       console.log('WRONG BUTTON CLICKED', e);
-      // Haptics.vibrate();
+      Haptics.vibrate();
       e.target.classList.add('vibrate-1');
       // this.playSound('click.mp3');
-      clickSnd.play();
+      // clickSnd.play();
+      NativeAudio.play({
+        assetId: "chime_audio"
+      })
     },
     playSound (sound) {
       if(sound) {
@@ -81,6 +93,12 @@ export default {
           console.log(error);
         });
       }
+    },
+    async setLevel (level) {
+      await Storage.set({
+        key: 'selected_level',
+        value: level
+      })
     }
   }
 }

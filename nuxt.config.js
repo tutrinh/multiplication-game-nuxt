@@ -4,7 +4,11 @@ export default {
 
   // Target (https://go.nuxtjs.dev/config-target)
   target: 'static',
-
+  server: {
+    port: 8000, // default: 3000
+    host: '0.0.0.0', // default: localhost,
+    timing: false
+  },
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     title: 'mult-game',
@@ -51,7 +55,7 @@ export default {
 
   // Content module configuration (https://go.nuxtjs.dev/config-content)
   content: {},
-
+  
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     extractCSS: true,

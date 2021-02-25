@@ -1,13 +1,26 @@
-.input {
-  font-size: 40px;
-  text-align: right;
+.input-screen {
+  font-size: 38px;
+  text-align: left;
   padding: 0px 10px;
   background-color: $neon-green;
   color: $navy;
   width: 100%;
   border: none;
   border-radius: 10px;
-  margin-bottom: 20px;
+  font-family: 'Montserrat';
+  font-weight: 700;
+  box-shadow: 0px 6px green;
+}
+
+.input {
+  font-size: 38px;
+  text-align: left;
+  padding: 0px 10px;
+  background-color: transparent;
+  color: $navy;
+  width: 100%;
+  border: none;
+  border-radius: 10px;
   font-family: 'Montserrat';
   font-weight: 700;
 }
@@ -23,12 +36,14 @@
       justify-content: center;
       align-items: center;
       padding: 4px;
+      margin: 0px 0px 6px 0px;
 
       .key {
         background-color: #2e3135;
         color: $white;
         font-weight: 700;
         font-size: 30px;
+        font-family: 'Seymour';
         width: 100%;
         height: 100%;
         display: flex;
@@ -48,6 +63,20 @@
 
       .pressed {
         transform: translate(0px, 3px);
+      }
+
+      .key-delete {
+        box-shadow: 0px 6px maroon;
+        font-family: 'Montserrat';
+        font-size: 20px;
+        color: maroon;
+      }
+
+      .key-enter {
+        box-shadow: 0px 6px green;
+        font-family: 'Montserrat';
+        font-size: 20px !important;
+        color: green;
       }
 
     }

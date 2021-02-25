@@ -1,0 +1,14 @@
+[
+  {
+    "name": "play",
+    "path": "/play",
+    "component": "/Users/prime/Documents/tinytouch/mult-game/pages/play.vue",
+    "chunkName": "pages/play"
+  },
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/prime/Documents/tinytouch/mult-game/pages/index.vue",
+    "chunkName": "pages/index"
+  }
+]
