@@ -5,16 +5,14 @@
         <h1 class="no-select">
           Evelyn T.
         </h1>
-        <p class="no-select">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum corporis magnam facere fugiat nihil, id quia, impedit tempore eligendi totam beatae incidunt eius. Enim consequuntur fuga alias velit? Maxime, est.
-        </p>
+        <h4>VUEX State: Counter {{count}} / mapState {{counter}}</h4>
       </div>
     </section>
     <section>
       <Card>
         <Progress :radius="60" :progress="90" :stroke="14" color="hotpink" under-color="pink" />
         <div class="no-select">
-          <h4 class="mb-0 font-weight-bold heading-tight">
+          <h4 class="mb-0 heading-tight">
             Your Score
           </h4>
           <p class="small font-weight-bold ">
@@ -23,19 +21,19 @@
         </div>
       </Card>
     </section>
-    <section>
-      <div class="container container-fluid py-2">
-        <NuxtLink to="/play" class="btn btn-round btn-dark btn-block">PLAY</NuxtLink>
-        <a id="wrong" @click.prevent="wrong" class="btn btn-round btn-danger btn-block my-4">WRONG</a>
-        <audio id="clickSnd" class="d-none" preload="auto" controls="none" src="click.mp3" />
+    <section class="">
+      <div class="container p-0">
+        <Swiper />
       </div>
     </section>
   </div>
 </template>
 <script>
 /* eslint-disable */
-import { Print } from '~/utils/print';
-import { Plugins } from '@capacitor/core';
+import { Print } from '~/utils/print'
+import { Plugins } from '@capacitor/core'
+import { mapState } from 'vuex'
+import { mapMutations } from 'vuex'
 const { Storage, Haptics, NativeAudio } = Plugins;
 
 
@@ -51,27 +49,45 @@ export default {
   mounted() {
     Print.printName('Tu');
 
-    const wrongBtn = document.querySelector('#wrong');
-    const clickSnd = document.querySelector('#clickSnd');
+    // const wrongBtn = document.querySelector('#wrong');
+    // const clickSnd = document.querySelector('#clickSnd');
 
-    console.log(wrongBtn);
-    wrongBtn.addEventListener('animationend', function(e) {
-      console.log('THIS');
-      console.log('ANIMATION ENDED');
-      e.target.classList.remove('vibrate-1');
+    // console.log(wrongBtn);
+    // wrongBtn.addEventListener('animationend', function(e) {
+    //   console.log('THIS');
+    //   console.log('ANIMATION ENDED');
+    //   e.target.classList.remove('vibrate-1');
       
-    });
+    // });
 
     NativeAudio.preloadSimple({
       assetPath: "public/assets/click1.mp3",
       assetId: "chime_audio"
     })
 
-    // Set level at 3
+    // Store API
     this.setLevel('6')
 
+    // VUEX increment counter by 1 with mutations
+    this.$store.commit('increment')
+    this.$store.commit('increment')
+    this.incrementBy({amount:10}) // store mutation with payload object with key amount
+
+  },
+  computed: {
+    count () {
+      return this.$store.state.counter
+    },
+    ...mapState({
+      counter: 'counter'
+    })
   },
   methods: {
+    ...mapMutations([
+      'increment',
+      'incrementBy',
+      'setLevel'
+    ]),
     wrong: function(e) {
       console.log('WRONG BUTTON CLICKED', e);
       Haptics.vibrate();
@@ -94,14 +110,13 @@ export default {
         });
       }
     },
-    async setLevel (level) {
+    /*async setLevel (level) {
       await Storage.set({
         key: 'selected_level',
         value: level
       })
-    }
+    },*/
+
   }
 }
 </script>
-
-

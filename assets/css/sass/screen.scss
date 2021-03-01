@@ -1,0 +1,18 @@
+.screen {
+  background-color: $red;
+  height: 100vh;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: $neutral;
+  z-index: 10;
+
+  &__begin {
+    background-color: $red;
+  }
+
+  &__end {
+    background-color: $navy;
+  }
+}
