@@ -3,37 +3,7 @@
     <!-- Begin Screen Select Game Mode Normal Hard -->
     <transition name="fade">
       <div id="EndScreen" class="screen screen__end" v-if="showEnd">
-        <section>
-          <div class="container">
-            <NuxtLink to="/">
-              <svg
-                class="svg-30"
-                viewBox="0 0 15 15"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                width="15"
-                height="15">
-                <path d="M1.5 7.5l4-4m-4 4l4 4m-4-4H14" stroke="currentColor"></path>
-              </svg>
-            </NuxtLink>
-            <h1 class="font-weight-bold heading-tight no-select">END</h1>
-            <h3>Right: {{counter}} of {{total_count}}</h3>
-            <p>
-              Game Mode: <span class="font-weight-bold">{{gameMode}}</span><br>
-              Game State: <span class="font-weight-bold">{{gameState}}</span>
-            </p>
-            <h2 class="font-weight-bold">Level {{level}}</h2>
-          </div>
-        </section>
-        <section>
-          <div class="container">
-            <div class="row flex-column justify-content-center align-items-center">
-              <button class="btn btn-round" @click="setGameModeAndPlay({gameMode:'normal'})">Normal</button>
-              <button class="btn btn-round" @click="setGameModeAndPlay({gameMode:'hard'})">Hard</button>
-
-            </div>
-          </div>
-        </section>
+        <EndScreen :counter="counter" :total_count="total_count" :level="String(level)" :missed="missed" />
       </div>
     </transition>
     <!-- End BeginScreen -->
@@ -54,7 +24,7 @@
               </svg>
             </NuxtLink>
             <h1 class="font-weight-bold heading-tight no-select">PLAY</h1>
-            <p>
+            <p class="d-none">
               Game Mode: <span class="font-weight-bold">{{gameMode}}</span><br>
               Game State: <span class="font-weight-bold">{{gameState}}</span>
             </p>
@@ -63,10 +33,10 @@
         </section>
         <section>
           <div class="container">
+            <!-- Game Mode Buttons -->
             <div class="row flex-column justify-content-center align-items-center">
-              <button class="btn btn-round" @click="setGameModeAndPlay({gameMode:'normal'})">Normal</button>
-              <button class="btn btn-round" @click="setGameModeAndPlay({gameMode:'hard'})">Hard</button>
-
+              <button class="btn btn-round btn__gamemode" @touchend="setGameModeAndPlay({gameMode:'normal'})">Normal</button>
+              <button class="btn btn-round btn__gamemode" @touchend="setGameModeAndPlay({gameMode:'hard'})">Hard</button>
             </div>
           </div>
         </section>
@@ -87,7 +57,7 @@
           </svg>
         </NuxtLink>
         <h1 class="font-weight-bold heading-tight no-select">PLAY</h1>
-        <p>
+        <p class="d-none">
           Game Mode: <span class="font-weight-bold">{{gameMode}}</span><br>
           Game State: <span class="font-weight-bold">{{gameState}}</span><br>
           Chances: <span class="font-weight-bold">{{chances}}</span>
@@ -98,8 +68,14 @@
       <div class="container calculator">
         <div class="row display">
           <div class="w-100 d-flex flex-row justify-content-between align-items-baseline">
-            <h2 class="no-select">Level {{selected_level}}</h2>
-            <h5 class="display-total font-weight-semibold no-select">{{counter}} / {{total_count}}</h5>
+            <h4 class="no-select font-weight-semibold">Level {{selected_level}}</h4>
+            <div class="d-flex flex-row position-relative justify-content-center align-items-baseline">
+              <h4 class="display-total font-weight-semibold no-select">
+              {{counter}}
+              </h4>
+              <!-- Star svg -->
+              <svg class="color-gold star" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" width="15" height="15"><path d="M7.948.779a.5.5 0 00-.896 0L5.005 4.926l-4.577.665a.5.5 0 00-.277.853l3.312 3.228-.782 4.559a.5.5 0 00.725.527L7.5 12.605l4.094 2.153a.5.5 0 00.725-.527l-.782-4.56 3.312-3.227a.5.5 0 00-.277-.853l-4.577-.665L7.948.78z" fill="currentColor"></path></svg>
+            </div>
           </div>
           <div id="display-screen" class="input-screen w-100 d-flex flex-row mb-3">
             <div class="col-8 no-select">
@@ -114,64 +90,64 @@
         <!-- Calculator Buttons -->
         <div class="keypad row flex-row flex-wrap">
           <div class="col-4">
-            <div class="key no-select" data-value="1" v-on:click="enterValue">
+            <button class="key no-select" data-value="1" v-on:touchstart="enterValue">
               1
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="2" v-on:click="enterValue">
+            <button class="key no-select"  data-value="2" v-on:touchstart="enterValue">
               2
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="3" v-on:click="enterValue">
+            <button class="key no-select"  data-value="3" v-on:touchstart="enterValue">
               3
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="4" v-on:click="enterValue">
+            <button class="key no-select"  data-value="4" v-on:touchstart="enterValue">
               4
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="5" v-on:click="enterValue">
+            <button class="key no-select"  data-value="5" v-on:touchstart="enterValue">
               5
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="6" v-on:click="enterValue">
+            <button class="key no-select"  data-value="6" v-on:touchstart="enterValue">
               6
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="7" v-on:click="enterValue">
+            <button class="key no-select"  data-value="7" v-on:touchstart="enterValue">
               7
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="8" v-on:click="enterValue">
+            <button class="key no-select"  data-value="8" v-on:touchstart="enterValue">
               8
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="9" v-on:click="enterValue">
+            <button class="key no-select"  data-value="9" v-on:touchstart="enterValue">
               9
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key key-enter color-bg-neon-green color-navy no-select" v-on:click="enteredAnswer">
+            <button class="key key-enter color-bg-neon-green color-navy no-select" v-on:touchstart="enteredAnswer">
               ENT
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key no-select"  data-value="0" v-on:click="enterValue">
+            <button class="key no-select"  data-value="0" v-on:touchstart="enterValue">
               0
-            </div>
+            </button>
           </div>
           <div class="col-4">
-            <div class="key key-delete color-bg-red color-navy no-select" v-on:click="deleteLast">
+            <button class="key key-delete color-bg-red color-navy no-select" v-on:touchstart="deleteLast">
               DEL
-            </div>
+            </button>
           </div>
         </div>
       </div>
@@ -197,7 +173,7 @@ export default {
       arr: [],
       missed: [],
       equation: [6, 2],
-      chance: this.chances,
+      chances: 1,
       chances_count: 1
     }
   },
@@ -211,9 +187,10 @@ export default {
     beginScreen () {
       return document.querySelector('#BeginScreen')
     },
-    chances () {
-      return (this.gameMode == 'normal') ? 2 : 1
-    }
+    starIcon () {
+      return document.querySelector('.star')
+    },
+
   },
   watch: {
     gameState(newValue, oldValue) {
@@ -229,13 +206,10 @@ export default {
   },
   mounted () {
 
-    this.resetCounter()
+    this.initGame()
     
 
-    NativeAudio.preloadSimple({
-      assetPath: 'public/assets/click1.mp3',
-      assetId: 'chime_audio'
-    })
+   
     const keys = document.querySelectorAll('.key')
     for (const [i, key] of keys.entries()) {
       key.addEventListener('touchstart', function (e) {
@@ -256,18 +230,28 @@ export default {
     this.selected_level = this.level
     
 
-    this.createArray()
-
-    this.$nextTick(
-      this.createEquationArray()
-    )
-
     document.querySelector('#display-screen').addEventListener('animationend', function (e) {
       e.target.classList.remove('vibrate-1')
       e.target.classList.remove('color-bg-red')
     }, false)
   },
   methods: {
+    initGame () {
+      this.resetCounter()
+    },
+    replayGame() {
+      this.resetCounter()
+      this.setGameState({gameState: 'playing'})
+      this.showEnd = false
+      this.arr = []
+      this.missed = []
+      this.equation = []
+      this.createArray()
+      this.$nextTick(
+        this.createEquationArray()
+      )
+
+    },
     ...mapMutations ([
       'setGameMode',
       'setGameState',
@@ -285,6 +269,10 @@ export default {
       console.log('game mode: ', this.gameMode)
       this.setChances()
       console.log('Chances: ', this.chances)
+      this.createArray()
+      this.$nextTick(
+        this.createEquationArray()
+      )
     },
     setChances () {
       if (this.gameMode === 'normal') {
@@ -353,31 +341,41 @@ export default {
       }
       console.log(this.equation)
     },
-    enteredAnswer () {
+    enteredAnswer (e) {
       // enter answer
-      console.log('ENTERED ANSWER')
+      console.log('ENTERED ANSWER', e)
+
       const ANSWER = parseInt(this.equation[0]) * parseInt(this.equation[1])
       console.log(ANSWER)
-      if (parseInt(this.q) === ANSWER) {
-        console.log('CORRECT')
-        this.q = ''
-        this.increment()
-        this.getNextEquation()
-        
-      } else {
-        console.log('WRONG')
-        this.q = ''
-        document.querySelector('#display-screen').classList.add('vibrate-1')
-        document.querySelector('#display-screen').classList.add('color-bg-red')
-        Haptics.vibrate()
-        if (this.chances === this.chances_count) {
+      if (this.q !== '') {
+        if (parseInt(this.q) === ANSWER) {
+          console.log('CORRECT')
+          this.q = ''
+          this.playStarPopUp()
+          setTimeout( () => {
+            this.increment()
+          }, 350)
           this.getNextEquation()
-          this.chances_count = 1
+          
         } else {
-          this.chances_count += 1
+          console.log('WRONG')
+          this.q = ''
+          document.querySelector('#display-screen').classList.add('vibrate-1')
+          document.querySelector('#display-screen').classList.add('color-bg-red')
+          Haptics.vibrate()
+          if (this.chances === this.chances_count) {
+            this.addToMissed(parseInt(this.equation[0]), parseInt(this.equation[1]))
+            this.getNextEquation()
+            this.chances_count = 1
+          } else {
+            this.chances_count += 1
+          }
+          
         }
-        
+      } else {
+        console.log('PLEASE ENTER AN ANSWER')
       }
+      // end if
     },
     getNextEquation () {
       if (this.arr.length > 0) {
@@ -386,24 +384,72 @@ export default {
         console.log('NO MORE EQUATIONS')
         // GO TO END SCREEN
         // let vm = this
-        /* setTimeout(function () {
-          vm.$router.push({
-            path: '/'
-          })
-          vm = null
-        }, 500) */
-        this.setGameState({gameState: 'end'})
-        this.equation = []
+
+        setTimeout( () => {
+          this.setGameState({gameState: 'end'})
+          this.equation = []
+        }, 500)
+        
+      }
+    },
+    addToMissed(x, y) {
+      let _arr = [x, y]
+      this.missed.push(_arr)
+      console.log("missed array: ", this.missed)
+    },
+    resetMissed () {
+      this.missed = []
+    },
+    playStarPopUp () {
+      this.starIcon.classList.add('star-pop-up')
+
+      this.starIcon.onanimationend = () => {
+        if (this.starIcon.classList.contains('star-pop-up')) {
+          this.starIcon.classList.remove('star-pop-up')
+        }
       }
     }
+  },
+  beforeDestroy() {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
   .fade-enter-active, .fade-leave-active {
-    transition: opacity ease .5s;
+    transition: opacity cubic-bezier(0.250, 0.460, 0.450, 0.940) 1.15s;
   }
   .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
   }
+
+/* Animation key frames */
+@keyframes star-pop {
+  0%   { transform: translateY(0px) }
+  25%  { transform: translateY(-20px) }
+  50%  { transform: translateY(0px) }
+}
+/* Class to call the animation */
+
+
+
+
+.star {
+  -webkit-transform: translateY(0px);
+  transform: translateY(0px);
+  -webkit-transform-origin: 50% 50%;
+  transform-origin: 50% 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: 4px;
+}
+
+.star-pop-up {
+  animation-name: star-pop;
+  animation-iteration-count: 1;
+  animation-timing-function: cubic-bezier(0.250, 0.460, 0.450, 0.940);
+  animation-delay: 0s;
+  animation-duration: 0.75s;
+
+}
+
 </style>
