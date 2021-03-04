@@ -9,3 +9,111 @@ h1 {
 .font-weight-semibold {
   font-weight: 600 !important;
 }
+
+@mixin skew($y) {
+  transform: skew(-11deg, -7deg) translateY($y);
+}
+
+@mixin text-shadow($color) {
+  text-shadow: 
+    0 1px 0 $color,
+    1px 2px 0 $color,
+    2px 3px 0 $color;
+}
+
+@mixin box-shadow($color) {
+  box-shadow: 
+    0 1px 0 $color,
+    1px 2px 0 $color,
+    2px 3px 0 $color;
+}
+
+$title-size: 4rem;
+
+.main-title {
+  @include skew(0);
+  @include text-shadow(maroon);
+  color: $red;
+  font-size: $title-size;
+
+
+}
+
+.main-title-2 {
+  @include skew(-24px);
+  @include text-shadow(maroon);
+  color: $red;
+  font-size: $title-size;
+}
+
+.main-title-play {
+  @include skew(0px);
+  @include text-shadow(goldenrod);
+  color: gold;
+  font-size: $title-size;
+
+  &--pressed {
+    @include skew(10px);
+  }
+
+}
+
+.main-title-desc {
+  @include skew(-30px);
+  // @include text-shadow(maroon);
+  color: $neutral;
+  font-size: 1.25rem;
+
+
+}
+
+.main-title-ribbon {
+  color: $neutral;
+  background-color: $red;
+  @include skew(-36px);
+  @include box-shadow(maroon);
+  padding: 10px 30px;
+  font-size: 1.35rem;
+  width: 90%;
+  text-shadow: 2px 2px 0 maroon;
+}
+
+
+.footer {
+  position: absolute;
+  bottom: 10px;
+  width: 100%;
+  .info-wrapper {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+
+  .info {
+    padding: 2px 8px;
+    border-right: 1px solid $neutral;
+    h5,h6 {
+      color: $neutral;
+      text-align: right;
+    }
+
+    h5 {
+      font-size: 12px;
+      margin-bottom: 0;
+      font-weight: 600;
+    }
+
+    h6 {
+      font-size: 10px
+    }
+  }
+
+  .icon {
+    padding: 2px 8px;
+    svg {
+      width: 30px;
+      height: 30px;
+      color: $neutral;
+    }
+  }
+}

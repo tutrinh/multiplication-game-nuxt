@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="main-screen">
     <!-- Begin Screen Select Game Mode Normal Hard -->
     <transition name="fade">
       <div id="EndScreen" class="screen screen__end" v-if="showEnd">
